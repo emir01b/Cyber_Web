@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Haberler - CyberMorg</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">CyberMorg</a></div>
+            <ul class="navbar">
+                <li><a href="news.html">Haberler</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="education.html">Eğitim</a></li>
+            </ul>
+            <div class="login-container">
+                <a href="login.html" class="login-button">Giriş Yap</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Haberler</h2>
+        <div id="news-container"></div>
+    </main>
+    <script>
+        // Haberleri çekme
+        async function fetchNews() {
+            try {
+                const response = await fetch('/api/posts'); // API'den haberleri çek
+                if (!response.ok) {
+                    throw new Error('Ağ hatası: ' + response.status);
+                }
+                const posts = await response.json();
+                const newsContainer = document.getElementById('news-container');
+
+                // Eğer post yoksa, kullanıcıya bilgi ver
+                if (posts.length === 0) {
+                    newsContainer.innerHTML = '<p>Henüz haber yok.</p>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'card'; // Kart sınıfı
+                    postElement.innerHTML = `
+                        <img src="${post.image}" alt="${post.title}">
+                        <h3>${post.title}</h3>
+                        <p>${post.content}</p>
+                        <a href="${post.link}" target="_blank">Devamını oku</a>
+                    `;
+                    newsContainer.appendChild(postElement);
+                });
+            } catch (error) {
+                console.error('Haberleri çekerken hata oluştu:', error);
+            }
+        }
+
+        fetchNews(); // Sayfa yüklendiğinde haberleri çek
+    </script>
+</body>
+</html> 
