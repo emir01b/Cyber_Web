@@ -1,0 +1,235 @@
+/* login.html ve register.html için ortak stiller */
+.form-container {
+    background: var(--accent-color);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.form-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    color: var(--light-text);
+    border-radius: 4px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--glow-effect);
+}
+
+.btn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+    background-color: rgba(26, 26, 26, 0.8);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+/* Link stilleri */
+.form-container p a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form-container p a:hover {
+    text-shadow: var(--glow-effect);
+}
+
+/* Doğrulama kodu alanı için özel stiller */
+#verificationCodeGroup {
+    margin-top: 1rem;
+}
+
+#sendVerification {
+    margin-bottom: 1rem;
+}
+
+/* Auth butonları */
+.auth-btn {
+    background: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.auth-btn:hover {
+    background: #00ff00;
+    color: #000;
+}
+
+.auth-btn i {
+    font-size: 16px;
+}
+
+/* Kullanıcı dropdown */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #1a1a1a;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,255,0,0.2);
+    border-radius: 5px;
+    border: 1px solid #00ff00;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #00ff00;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #00ff00;
+    color: #000;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Modal stili */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #00ff00;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close {
+    color: #00ff00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+/* Form stili */
+.auth-form {
+    padding: 20px;
+}
+
+.auth-form h2 {
+    color: #00ff00;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #00ff00;
+    background: #000;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 10px;
+    background: #00ff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.auth-form button:hover {
+    background: #00cc00;
+}
+
+.auth-form p {
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.auth-form a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+} 

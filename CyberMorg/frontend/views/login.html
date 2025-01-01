@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Giriş Yap</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="E-posta" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Şifre" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%">Giriş Yap</button>
+            </form>
+            <p style="margin-top: 1rem; text-align: center; color: var(--light-text);">
+                Hesabınız yok mu? <a href="/register" style="color: var(--primary-color); text-decoration: none;">Kayıt Ol</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

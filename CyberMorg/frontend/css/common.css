@@ -1,0 +1,178 @@
+:root {
+    --primary-color: #00ff00;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #000000;
+    --light-text: #ffffff;
+    --accent-color: #1a1a1a;
+    --glow-effect: 0 0 10px var(--primary-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(0,0,0,0.9) 0%, var(--dark-bg) 100%);
+}
+
+/* Navbar stilleri */
+.navbar {
+    background-color: var(--darker-bg);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: var(--glow-effect);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.logo i {
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+    text-shadow: var(--glow-effect);
+}
+
+/* Auth butonları için stiller */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.auth-buttons .btn {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.auth-buttons .btn:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+/* Kullanıcı menüsü stilleri */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-button {
+    color: var(--primary-color);
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.user-button:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--accent-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-menu a {
+    color: var(--light-text);
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-menu a:hover {
+    background: var(--darker-bg);
+    color: var(--primary-color);
+}
+
+.dropdown-menu hr {
+    border: none;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    margin: 0.5rem 0;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.auth-buttons .btn {
+    margin: 0;
+} 

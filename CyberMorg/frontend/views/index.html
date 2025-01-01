@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="welcome-section">
+            <h1>CyberMorg'a Hoş Geldiniz</h1>
+            <p>Siber güvenlik dünyasında güncel kalmak için ihtiyacınız olan her şey burada!</p>
+        </section>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h3 class="feature-title">Güncel Haberler</h3>
+                <p class="feature-description">
+                    En son siber güvenlik haberleri, güvenlik açıkları ve güncellemeler hakkında bilgi edinin.
+                </p>
+                <a href="/news" class="feature-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Haberlere Git
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="feature-title">Forum</h3>
+                <p class="feature-description">
+                    Topluluğa katılın, sorular sorun ve deneyimlerinizi paylaşın.
+                </p>
+                <a href="/forum" class="feature-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Forum'a Git
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="feature-title">Eğitimler</h3>
+                <p class="feature-description">
+                    Kapsamlı eğitim materyalleri ile kendinizi geliştirin.
+                </p>
+                <a href="/education" class="feature-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Eğitimlere Git
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <!-- ... mevcut modal yapısı ... -->
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>
