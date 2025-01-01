@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://emir123emir:Emir123Emir@cyberweb.xivul.mongodb.net/CyberWeb?retryWrites=true&w=majority');
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log('MongoDB bağlantısı başarılı');
     } catch (err) {
         console.error(`Hata: ${err.message}`);
