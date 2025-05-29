@@ -1,4 +1,32 @@
 {
+  "name": "cybermorg",
+  "version": "1.0.0",
+  "description": "CyberMorg - Siber Güvenlik Platformu",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "install-all": "npm run install-backend && npm run install-frontend"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/cybermorg.git"
+  },
+  "keywords": [
+    "cybersecurity",
+    "security",
+    "education",
+    "forum",
+    "news"
+  ],
+  "author": "Emir",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.7",
     "nodemailer": "^6.9.16"

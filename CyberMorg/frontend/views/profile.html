@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h2 id="username">Kullanıcı Adı</h2>
+                <p id="email">kullanici@ornek.com</p>
+            </div>
+            
+            <div class="profile-info">
+                <div class="info-card">
+                    <h3>Profil Bilgileri</h3>
+                    <div class="info-item">
+                        <span class="label">Üyelik Tarihi:</span>
+                        <span id="memberSince">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Son Giriş:</span>
+                        <span id="lastLogin">-</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Güvenlik</h3>
+                    <button id="changePasswordBtn" class="btn">Şifre Değiştir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html> 

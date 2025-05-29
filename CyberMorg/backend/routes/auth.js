@@ -2,52 +2,32 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
 const User = require('../models/User');
+require('dotenv').config();
 
-// E-posta doğrulama kodlarını geçici olarak saklamak için
+// Doğrulama kodlarını geçici olarak saklamak için
 const verificationCodes = new Map();
 
-// E-posta gönderme yapılandırması
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'cybermorg23@gmail.com', // Gmail hesabınız
-        pass: 'pdpd bsjf lpcc lekj' // Gmail uygulama şifreniz
+// Kullanıcı sayısını döndüren endpoint
+router.get('/count', async (req, res) => {
+    try {
+        const count = await User.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        console.error('Kullanıcı sayısı hatası:', error);
+        res.status(500).json({ 
+            error: 'Kullanıcı sayısı alınamadı',
+            details: error.message
+        });
     }
 });
 
-// Kayıt için doğrulama kodu gönderme
+// Kayıt için doğrulama kodu gönderme (simülasyon)
 router.post('/send-verification', async (req, res) => {
     try {
-        const { email } = req.body;
-        const verificationCode = Math.floor(100000 + Math.random() * 900000);
+        const { email, username } = req.body;
         
-        const mailOptions = {
-            from: 'your-email@gmail.com',
-            to: email,
-            subject: 'CyberMorg Doğrulama Kodu',
-            text: `Doğrulama kodunuz: ${verificationCode}`
-        };
-
-        await transporter.sendMail(mailOptions);
-        verificationCodes.set(email, {
-            code: verificationCode.toString(),
-            timestamp: Date.now()
-        });
-
-        res.json({ message: 'Doğrulama kodu gönderildi' });
-    } catch (error) {
-        res.status(500).json({ error: 'Doğrulama kodu gönderilemedi' });
-    }
-});
-
-// Kullanıcı kaydı
-router.post('/register', async (req, res) => {
-    try {
-        const { username, email, password, verificationCode } = req.body;
-
-        // Kullanıcı adı ve email kontrolü
+        // E-posta ve kullanıcı adının benzersiz olduğunu kontrol et
         const existingUser = await User.findOne({ 
             $or: [{ email }, { username }] 
         });
@@ -57,6 +37,37 @@ router.post('/register', async (req, res) => {
                 error: 'Bu e-posta veya kullanıcı adı zaten kullanımda' 
             });
         }
+        
+        // Gerçek bir e-posta göndermek yerine, rastgele bir kod oluştur ve sakla
+        const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+        
+        verificationCodes.set(email, {
+            code: verificationCode,
+            timestamp: Date.now()
+        });
+
+        console.log(`Doğrulama kodu oluşturuldu: ${email} için ${verificationCode}`);
+        
+        // Başarılı yanıt
+        res.json({ 
+            message: 'Doğrulama kodu gönderildi', 
+            // Gerçek bir uygulamada bu kodu göndermemeniz gerekir, güvenlik riski oluşturur
+            // Test amacıyla buraya ekledik
+            code: verificationCode
+        });
+    } catch (error) {
+        console.error('Doğrulama kodu hatası:', error);
+        res.status(500).json({ 
+            error: 'Doğrulama kodu gönderilemedi',
+            details: error.message
+        });
+    }
+});
+
+// Kullanıcı kaydı
+router.post('/register', async (req, res) => {
+    try {
+        const { username, email, password, verificationCode } = req.body;
 
         // Doğrulama kodunu kontrol et
         const storedVerification = verificationCodes.get(email);
@@ -84,6 +95,8 @@ router.post('/register', async (req, res) => {
         await user.save();
         verificationCodes.delete(email); // Başarılı kayıttan sonra kodu sil
 
+        console.log(`Yeni kullanıcı kaydedildi: ${username}, ${email}`);
+
         // Başarılı yanıt
         res.status(200).json({ 
             message: 'Kullanıcı başarıyla kaydedildi',
@@ -94,7 +107,7 @@ router.post('/register', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Kayıt hatası:', error); // Hata detayını logla
+        console.error('Kayıt hatası:', error);
         res.status(500).json({ 
             error: 'Kayıt işlemi başarısız',
             details: error.message 
@@ -122,9 +135,11 @@ router.post('/login', async (req, res) => {
         // JWT token oluştur
         const token = jwt.sign(
             { userId: user._id },
-            process.env.JWT_SECRET || 'your-jwt-secret',
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
+
+        console.log(`Kullanıcı giriş yaptı: ${user.username}, ${user.email}, Admin: ${user.isAdmin}`);
 
         // Başarılı yanıt
         res.json({
@@ -132,12 +147,16 @@ router.post('/login', async (req, res) => {
             user: {
                 id: user._id,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                isAdmin: user.isAdmin
             }
         });
     } catch (error) {
-        console.error('Giriş hatası:', error); // Hatayı logla
-        res.status(500).json({ error: 'Giriş işlemi başarısız' });
+        console.error('Giriş hatası:', error);
+        res.status(500).json({ 
+            error: 'Giriş işlemi başarısız',
+            details: error.message
+        });
     }
 });
 

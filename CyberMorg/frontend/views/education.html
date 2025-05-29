@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/education.css">
+    <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
     <nav class="navbar">
@@ -31,19 +32,19 @@
         <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem;">
             Siber Güvenlik Eğitimleri
         </h2>
-        <div class="education-grid">
-            <div class="course-card">
-                <div class="course-image">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="course-content">
-                    <h3>Temel Siber Güvenlik</h3>
-                    <p>Siber güvenliğin temellerini öğrenin ve kendinizi geliştirin.</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 30%"></div>
-                    </div>
-                </div>
+
+        <!-- Admin Paneli (sadece admin kullanıcılar için) -->
+        <div id="adminPanel" class="admin-panel" style="display: none;">
+            <div class="admin-header">
+                <h3><i class="fas fa-cog"></i> Admin Paneli</h3>
+                <button id="addCourseBtn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Eğitim Ekle
+                </button>
             </div>
+        </div>
+
+        <div id="educationGrid" class="education-grid">
+            <!-- Eğitimler dinamik olarak buraya yüklenecek -->
         </div>
     </div>
 

@@ -1,8 +1,52 @@
+/* Admin Paneli */
+.admin-panel {
+    background: var(--accent-color);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header h3 {
+    color: var(--primary-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn.btn-primary {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn.btn-primary:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+/* Eğitim Grid */
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
-    padding: 2rem;
+    padding: 0;
 }
 
 .course-card {
@@ -10,10 +54,11 @@
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(0, 255, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .course-card:hover {
@@ -21,20 +66,69 @@
     box-shadow: var(--glow-effect);
 }
 
-.course-image {
-    width: 100%;
-    height: 200px;
-    background: var(--darker-bg);
+/* Kurs Header */
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    position: relative;
+}
+
+.course-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-course-btn,
+.delete-course-btn {
+    background: transparent;
+    border: 1px solid;
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    font-size: 0.85rem;
 }
 
-.course-image i {
-    font-size: 4rem;
+.edit-course-btn {
+    border-color: var(--primary-color);
     color: var(--primary-color);
-    text-shadow: var(--glow-effect);
+}
+
+.edit-course-btn:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.delete-course-btn {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.delete-course-btn:hover {
+    background: var(--danger-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
 }
 
 .course-content {
@@ -47,27 +141,193 @@
 .course-content h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 1.3;
 }
 
 .course-content p {
     color: var(--light-text);
     margin-bottom: 1.5rem;
     flex: 1;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 6px;
-    background: var(--darker-bg);
-    border-radius: 3px;
-    overflow: hidden;
+/* Etiketler */
+.course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--primary-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tag-more {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--light-text);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.course-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.course-details span {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.8;
+}
+
+.course-details i {
+    color: var(--primary-color);
+}
+
+/* Kurs İstatistikleri */
+.course-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: auto;
 }
 
-.progress {
-    height: 100%;
-    background: var(--primary-color);
-    box-shadow: var(--glow-effect);
-    transition: width 0.3s ease;
-} 
+.course-stats span {
+    color: var(--light-text);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.8;
+}
+
+.course-stats i {
+    color: var(--primary-color);
+}
+
+.difficulty-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.difficulty-rating .fas.fa-star {
+    font-size: 0.7rem;
+}
+
+/* Loading ve Error States */
+.loading, .no-courses, .error {
+    text-align: center;
+    color: var(--light-text);
+    padding: 3rem 2rem;
+    grid-column: 1 / -1;
+    font-style: italic;
+}
+
+.error {
+    color: var(--danger-color);
+}
+
+/* Form Dropdown Stili */
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--accent-color);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    color: var(--light-text);
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.form-group select option {
+    background: var(--darker-bg);
+    color: var(--light-text);
+    padding: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .course-details {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .course-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .course-header {
+        padding: 1rem;
+    }
+    
+    .admin-actions {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .course-content {
+        padding: 1rem;
+    }
+    
+    .course-content h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Category Colors */
+.course-category.temel { background: var(--success-color); }
+.course-category.orta { background: var(--warning-color); }
+.course-category.ileri { background: var(--primary-color); }
+.course-category.uzman { background: var(--danger-color); } 

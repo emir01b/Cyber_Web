@@ -77,6 +77,71 @@
                 </a>
             </div>
         </div>
+
+        <!-- Güncel İçerikler Bölümü -->
+        <section class="latest-content">
+            <h2 class="section-title"><i class="fas fa-bolt"></i> Güncel İçerikler</h2>
+            
+            <!-- Güncel Haberler -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-newspaper"></i> Son Haberler</h3>
+                    <a href="/news" class="view-all">Tümünü Gör <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div id="latestNews" class="content-cards">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+            
+            <!-- Güncel Forum Konuları -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-comments"></i> Güncel Forum Konuları</h3>
+                    <a href="/forum" class="view-all">Tümünü Gör <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div id="latestTopics" class="content-cards">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+            
+            <!-- Popüler Eğitimler -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-graduation-cap"></i> Popüler Eğitimler</h3>
+                    <a href="/education" class="view-all">Tümünü Gör <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div id="popularCourses" class="content-cards">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- İstatistikler Bölümü -->
+        <section class="stats-section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> CyberMorg İstatistikleri</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3 id="userCount">0</h3>
+                    <p>Kullanıcı</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3 id="newsCount">0</h3>
+                    <p>Haber</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-comments"></i>
+                    <h3 id="forumCount">0</h3>
+                    <p>Forum Konusu</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3 id="courseCount">0</h3>
+                    <p>Eğitim</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <div id="authModal" class="modal">

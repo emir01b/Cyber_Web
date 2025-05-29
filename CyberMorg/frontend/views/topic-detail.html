@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konu Detayı - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/forum.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="topic-detail-container">
+            <!-- Geri dön butonu -->
+            <div class="back-button">
+                <a href="/forum" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Forum'a Geri Dön
+                </a>
+            </div>
+
+            <!-- Konu detayı -->
+            <div id="topicDetail" class="topic-detail">
+                <!-- Konu bilgileri buraya yüklenecek -->
+            </div>
+
+            <!-- Yorumlar bölümü -->
+            <div class="comments-section">
+                <h3>Yorumlar</h3>
+                <div id="commentsList" class="comments-list">
+                    <!-- Yorumlar buraya yüklenecek -->
+                </div>
+
+                <!-- Yorum ekleme formu (sadece giriş yapmış kullanıcılar için) -->
+                <div id="addCommentSection" class="add-comment-section" style="display: none;">
+                    <h4>Yorum Ekle</h4>
+                    <form id="addCommentForm">
+                        <div class="form-group">
+                            <textarea id="commentContent" placeholder="Yorumunuzu yazın..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-comment"></i> Yorum Ekle
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Giriş yapmayan kullanıcılar için mesaj -->
+                <div id="loginMessage" class="login-message" style="display: none;">
+                    <p><i class="fas fa-info-circle"></i> Yorum yapmak için <a href="/login">giriş yapın</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/topic-detail.js"></script>
+</body>
+</html> 

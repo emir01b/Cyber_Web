@@ -95,16 +95,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Konuları sayfaya ekle
     function addTopicToPage(topic) {
         const date = new Date(topic.createdAt).toLocaleString('tr-TR');
+        const commentCount = topic.commentCount || 0;
         const topicHTML = `
-            <div class="forum-topic">
+            <div class="forum-topic" onclick="window.location.href='/topic-detail?id=${topic._id}'" style="cursor: pointer;">
                 <div class="topic-header">
                     <span class="topic-title">${topic.title}</span>
                     <span class="topic-meta">${date}</span>
                 </div>
-                <div class="topic-content">${topic.content}</div>
+                <div class="topic-content">${topic.content.length > 150 ? topic.content.substring(0, 150) + '...' : topic.content}</div>
                 <div class="topic-footer">
                     <span><i class="fas fa-user"></i> ${topic.author}</span>
-                    <span><i class="fas fa-comments"></i> 0 Yorum</span>
+                    <span><i class="fas fa-comments"></i> ${commentCount} Yorum</span>
                 </div>
             </div>
         `;

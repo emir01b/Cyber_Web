@@ -179,6 +179,210 @@
     color: var(--primary-color);
 }
 
+/* Konu detay sayfası stilleri */
+.topic-detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.back-button {
+    margin-bottom: 2rem;
+}
+
+.back-button .btn {
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button .btn:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+.topic-detail {
+    background: var(--accent-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.topic-detail .topic-header h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.topic-detail .topic-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.topic-detail .topic-meta span {
+    color: var(--light-text);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.topic-detail .topic-meta i {
+    color: var(--primary-color);
+}
+
+.topic-detail .topic-content {
+    color: var(--light-text);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* Yorumlar bölümü */
+.comments-section {
+    background: var(--accent-color);
+    border-radius: 8px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.comments-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.comments-list {
+    margin-bottom: 2rem;
+}
+
+.comment {
+    background: var(--darker-bg);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment-author {
+    color: var(--primary-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comment-date {
+    color: var(--light-text);
+    opacity: 0.6;
+    font-size: 0.85rem;
+}
+
+.comment-content {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+.no-comments {
+    text-align: center;
+    color: var(--light-text);
+    opacity: 0.6;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* Yorum ekleme formu */
+.add-comment-section {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    padding-top: 1.5rem;
+}
+
+.add-comment-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.add-comment-section textarea {
+    width: 100%;
+    min-height: 120px;
+    background: var(--darker-bg);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 6px;
+    padding: 1rem;
+    color: var(--light-text);
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+.add-comment-section textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.add-comment-section .btn {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-comment-section .btn:hover {
+    background: var(--primary-color);
+    color: var(--darker-bg);
+    box-shadow: var(--glow-effect);
+}
+
+/* Giriş mesajı */
+.login-message {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 6px;
+    color: var(--light-text);
+}
+
+.login-message a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.login-message a:hover {
+    text-decoration: underline;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -198,15 +402,18 @@
     width: 70%;
     max-width: 600px;
     border-radius: 8px;
-    position: relative;
 }
 
 .close {
-    color: var(--primary-color);
+    color: var(--light-text);
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.close:hover {
+    color: var(--primary-color);
 }
 
 .form-group {
@@ -216,20 +423,22 @@
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--light-text);
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--primary-color);
+    padding: 0.75rem;
     background: var(--accent-color);
-    color: var(--light-text);
+    border: 1px solid rgba(0, 255, 0, 0.3);
     border-radius: 4px;
+    color: var(--light-text);
+    font-family: inherit;
 }
 
 .form-group textarea {
-    min-height: 150px;
+    min-height: 120px;
     resize: vertical;
 } 

@@ -20,16 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ email, username, password })
+                    body: JSON.stringify({ email, username })
                 });
 
                 const data = await response.json();
                 
                 if (response.ok) {
-                    alert('Doğrulama kodu e-posta adresinize gönderildi');
+                    // Test amacıyla doğrulama kodunu göster
+                    alert(`Doğrulama kodu: ${data.code}\nGerçek bir uygulamada bu e-posta ile gönderilir.`);
+                    
                     verificationCodeGroup.style.display = 'block';
                     sendVerificationButton.disabled = true;
                     sendVerificationButton.style.opacity = '0.7';
+                    
+                    // Doğrulama kodunu otomatik olarak input alanına ekle
+                    document.getElementById('verificationCode').value = data.code;
                 } else {
                     alert(data.error || 'Doğrulama kodu gönderilemedi');
                 }

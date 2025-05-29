@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eğitim Detayı - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/course-detail.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Geri dön butonu -->
+        <div class="back-button">
+            <a href="/education" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Eğitimlere Geri Dön
+            </a>
+        </div>
+
+        <!-- Yükleniyor mesajı -->
+        <div id="loadingMessage" class="loading-message">
+            <i class="fas fa-spinner fa-spin"></i> Eğitim yükleniyor...
+        </div>
+
+        <!-- Hata mesajı -->
+        <div id="errorMessage" class="error-message" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i> Eğitim yüklenirken bir hata oluştu.
+        </div>
+
+        <!-- Eğitim içeriği -->
+        <div id="courseContent" class="course-content-container" style="display: none;">
+            <!-- Eğitim başlığı ve bilgileri -->
+            <div class="course-header">
+                <div class="course-meta">
+                    <span id="courseCategory" class="course-category"></span>
+                    <div class="course-stats">
+                        <span id="courseViews" class="course-stat">
+                            <i class="fas fa-eye"></i> <span class="view-count">0</span> görüntüleme
+                        </span>
+                        <span id="courseDifficulty" class="course-stat">
+                            <i class="fas fa-star"></i> Zorluk: <span class="difficulty-level">1</span>/5
+                        </span>
+                    </div>
+                </div>
+                <h1 id="courseTitle" class="course-title"></h1>
+                <p id="courseDescription" class="course-description"></p>
+                <div class="course-info">
+                    <span class="instructor">
+                        <i class="fas fa-user-tie"></i> 
+                        Eğitmen: <span id="courseInstructor"></span>
+                    </span>
+                    <span class="publish-date">
+                        <i class="fas fa-calendar"></i> 
+                        <span id="publishDate"></span>
+                    </span>
+                </div>
+                <div id="courseTags" class="course-tags"></div>
+            </div>
+
+            <!-- Eğitim ana içeriği -->
+            <div class="course-main-content">
+                <div id="courseBody" class="course-body">
+                    <!-- Eğitim içeriği buraya yüklenecek -->
+                </div>
+            </div>
+
+            <!-- Admin düzenleme paneli -->
+            <div id="adminActions" class="admin-actions" style="display: none;">
+                <button id="editCourseBtn" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Eğitimi Düzenle
+                </button>
+                <button id="deleteCourseBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Eğitimi Sil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/course-detail.js"></script>
+</body>
+</html> 

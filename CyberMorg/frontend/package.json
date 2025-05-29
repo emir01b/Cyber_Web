@@ -1,0 +1,20 @@
+{
+  "name": "cybermorg-frontend",
+  "version": "1.0.0",
+  "description": "CyberMorg frontend application",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Frontend build complete'",
+    "dev": "live-server"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

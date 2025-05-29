@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eğitim Editörü - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/course-editor.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <!-- Bu kısım JavaScript ile dinamik olarak değiştirilecek -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Geri dön butonu -->
+        <div class="back-button">
+            <a href="/education" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Eğitimlere Geri Dön
+            </a>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-header">
+                <h1 id="editorTitle">
+                    <i class="fas fa-edit"></i> Yeni Eğitim Oluştur
+                </h1>
+                <p>Kapsamlı ve interaktif eğitim içerikleri oluşturun</p>
+            </div>
+
+            <form id="courseEditorForm">
+                <!-- Temel Bilgiler -->
+                <div class="editor-section">
+                    <h3><i class="fas fa-info-circle"></i> Temel Bilgiler</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="courseTitle">Eğitim Başlığı *</label>
+                            <input type="text" id="courseTitle" placeholder="Örn: Siber Güvenlik Temelleri" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseCategory">Kategori *</label>
+                            <select id="courseCategory" required>
+                                <option value="">Kategori Seçin</option>
+                                <option value="Temel">Temel</option>
+                                <option value="Orta">Orta</option>
+                                <option value="İleri">İleri</option>
+                                <option value="Uzman">Uzman</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="courseInstructor">Eğitmen *</label>
+                            <input type="text" id="courseInstructor" placeholder="Eğitmen adı" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseDifficulty">Zorluk Seviyesi</label>
+                            <select id="courseDifficulty">
+                                <option value="1">1 - Başlangıç</option>
+                                <option value="2">2 - Temel</option>
+                                <option value="3">3 - Orta</option>
+                                <option value="4">4 - İleri</option>
+                                <option value="5">5 - Uzman</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseDescription">Kısa Açıklama *</label>
+                        <textarea id="courseDescription" placeholder="Eğitimin kısa açıklaması..." rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseTags">Etiketler</label>
+                        <input type="text" id="courseTags" placeholder="Virgülle ayırarak etiketler ekleyin (örn: ağ, güvenlik, şifreleme)">
+                        <small>Etiketler virgülle ayrılmalıdır</small>
+                    </div>
+                </div>
+
+                <!-- İçerik Editörü -->
+                <div class="editor-section">
+                    <h3><i class="fas fa-edit"></i> Eğitim İçeriği</h3>
+                    
+                    <div class="content-editor">
+                        <div class="editor-toolbar">
+                            <button type="button" data-command="bold" title="Kalın">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button type="button" data-command="italic" title="İtalik">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button type="button" data-command="underline" title="Altı çizili">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <div class="toolbar-separator"></div>
+                            <button type="button" data-command="insertUnorderedList" title="Madde listesi">
+                                <i class="fas fa-list-ul"></i>
+                            </button>
+                            <button type="button" data-command="insertOrderedList" title="Numaralı liste">
+                                <i class="fas fa-list-ol"></i>
+                            </button>
+                            <div class="toolbar-separator"></div>
+                            <button type="button" data-command="formatBlock" data-value="h2" title="Başlık 2">
+                                <i class="fas fa-heading"></i> H2
+                            </button>
+                            <button type="button" data-command="formatBlock" data-value="h3" title="Başlık 3">
+                                <i class="fas fa-heading"></i> H3
+                            </button>
+                            <div class="toolbar-separator"></div>
+                            <button type="button" id="insertImageBtn" title="Resim ekle">
+                                <i class="fas fa-image"></i>
+                            </button>
+                            <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <div id="contentEditor" class="rich-editor" contenteditable="true" 
+                             placeholder="Eğitim içeriğinizi buraya yazın...">
+                        </div>
+                    </div>
+                    
+                    <!-- İçerik editörü altında resim yükleme alanı -->
+                    <div class="inline-image-upload">
+                        <p style="color: var(--light-text); margin: 1rem 0; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle"></i> 
+                            İpucu: Resimleri istediğiniz yere eklemek için editörde imlecinizi konumlandırın ve yukarıdaki resim butonuna tıklayın.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Resim Ekleme -->
+                <div class="editor-section">
+                    <h3><i class="fas fa-images"></i> Resim Galerisi</h3>
+                    <p style="color: var(--light-text); opacity: 0.8; margin-bottom: 1.5rem;">
+                        Buraya eklediğiniz resimler galeri halinde eğitimin sonunda görünecek
+                    </p>
+                    
+                    <div class="image-upload-area">
+                        <div class="upload-options">
+                            <!-- Dosya Upload -->
+                            <div class="upload-box file-upload-box">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Dosya seçin veya sürükleyip bırakın</p>
+                                <input type="file" id="galleryFileInput" accept="image/*" multiple style="display: none;">
+                                <button type="button" id="selectFileBtn" class="btn btn-primary">
+                                    <i class="fas fa-folder-open"></i> Dosya Seç
+                                </button>
+                            </div>
+                            
+                            <!-- URL Upload -->
+                            <div class="upload-box url-upload-box">
+                                <i class="fas fa-link"></i>
+                                <p>Resim URL'si ekleyin</p>
+                                <div class="url-input-group">
+                                    <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+                                    <input type="text" id="imageCaption" placeholder="Resim açıklaması (isteğe bağlı)">
+                                    <button type="button" id="addImageUrl" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i> Ekle
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="imageList" class="image-list">
+                        <!-- Eklenen resimler burada görünecek -->
+                    </div>
+                </div>
+
+                <!-- Önizleme -->
+                <div class="editor-section">
+                    <h3><i class="fas fa-eye"></i> Önizleme</h3>
+                    <button type="button" id="previewBtn" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i> Önizleme Göster/Gizle
+                    </button>
+                    
+                    <div id="previewArea" class="preview-area" style="display: none;">
+                        <!-- Önizleme içeriği -->
+                    </div>
+                </div>
+
+                <!-- Kaydetme -->
+                <div class="editor-actions">
+                    <button type="button" id="saveDraftBtn" class="btn btn-secondary">
+                        <i class="fas fa-save"></i> Taslak Olarak Kaydet
+                    </button>
+                    <button type="submit" id="publishBtn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Yayınla
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resim Upload Modal -->
+    <div id="imageUploadModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close" id="closeModal">&times;</span>
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">
+                <i class="fas fa-image"></i> Resim Ekle
+            </h3>
+            <div class="modal-upload-area">
+                <div class="modal-upload-box" id="modalDropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Resim seçin veya sürükleyip bırakın</p>
+                    <button type="button" id="modalSelectBtn" class="btn btn-primary">
+                        <i class="fas fa-folder-open"></i> Dosya Seç
+                    </button>
+                    <input type="file" id="modalFileInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Yükleniyor...</p>
+                </div>
+                
+                <!-- Resim ayarları bölümü - Yükleme tamamlandıktan sonra görünür olacak -->
+                <div class="image-settings" id="imageSettings" style="display: none;">
+                    <img id="imagePreview" src="" alt="Önizleme" style="max-width: 100%; margin-bottom: 1rem; border-radius: 5px;">
+                    
+                    <div class="settings-group">
+                        <label>Boyut:</label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-secondary size-btn" data-size="small">Küçük</button>
+                            <button type="button" class="btn btn-sm btn-secondary size-btn active" data-size="medium">Orta</button>
+                            <button type="button" class="btn btn-sm btn-secondary size-btn" data-size="large">Büyük</button>
+                            <button type="button" class="btn btn-sm btn-secondary size-btn" data-size="full">Tam</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <label>Konumlandırma:</label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-secondary align-btn" data-align="left">
+                                <i class="fas fa-align-left"></i> Sol
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary align-btn active" data-align="center">
+                                <i class="fas fa-align-center"></i> Orta
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary align-btn" data-align="right">
+                                <i class="fas fa-align-right"></i> Sağ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <label>Metin sarma:</label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-secondary float-btn" data-float="none">
+                                <i class="fas fa-ban"></i> Yok
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary float-btn" data-float="left">
+                                <i class="fas fa-indent"></i> Metni sağa sar
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary float-btn" data-float="right">
+                                <i class="fas fa-outdent"></i> Metni sola sar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="cancelUpload" class="btn btn-secondary">İptal</button>
+                <button type="button" id="insertImageToEditor" class="btn btn-primary" style="display: none;">Ekle</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/course-editor.js"></script>
+</body>
+</html> 
