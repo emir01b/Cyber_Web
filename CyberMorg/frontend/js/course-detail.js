@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const authButtons = document.querySelector('.auth-buttons');
     const user = JSON.parse(localStorage.getItem('user'));
     
@@ -112,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Eğitimi yükle
     async function loadCourse() {
         try {
-            const response = await fetch(`http://localhost:5001/api/education/courses/${courseId}`);
+            const response = await fetch(`${API_BASE_URL}/api/education/courses/${courseId}`);
             
             if (!response.ok) {
                 if (response.status === 404) {
@@ -214,7 +219,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`http://localhost:5001/api/education/courses/${courseId}`, {
+                const response = await fetch(`${API_BASE_URL}/api/education/courses/${courseId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`

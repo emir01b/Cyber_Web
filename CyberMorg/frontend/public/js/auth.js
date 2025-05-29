@@ -1,3 +1,8 @@
+// API Base URL - Production için
+const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5001' 
+    : 'https://cyber-web.onrender.com';
+
 const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');
 const loginModal = document.getElementById('loginModal');
@@ -19,7 +24,7 @@ loginForm.addEventListener('submit', async (e) => {
     const password = loginForm.querySelector('[type="password"]').value;
 
     try {
-        const response = await fetch('http://localhost:5000/api/login', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,13 +33,17 @@ loginForm.addEventListener('submit', async (e) => {
         });
 
         const data = await response.json();
-        if (data.token) {
+        if (response.ok && data.token) {
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             loginModal.style.display = 'none';
             window.location.reload();
+        } else {
+            alert(data.error || 'Giriş işlemi başarısız');
         }
     } catch (err) {
-        console.error(err);
+        console.error('Giriş hatası:', err);
+        alert('Giriş işlemi başarısız. Lütfen tekrar deneyin.');
     }
 });
 
@@ -45,7 +54,7 @@ registerForm.addEventListener('submit', async (e) => {
     const password = registerForm.querySelector('[type="password"]').value;
 
     try {
-        const response = await fetch('http://localhost:5000/api/register', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,12 +63,16 @@ registerForm.addEventListener('submit', async (e) => {
         });
 
         const data = await response.json();
-        if (data.token) {
+        if (response.ok && data.token) {
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             registerModal.style.display = 'none';
             window.location.reload();
+        } else {
+            alert(data.error || 'Kayıt işlemi başarısız');
         }
     } catch (err) {
-        console.error(err);
+        console.error('Kayıt hatası:', err);
+        alert('Kayıt işlemi başarısız. Lütfen tekrar deneyin.');
     }
 });

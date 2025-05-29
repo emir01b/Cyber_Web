@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const authButtons = document.querySelector('.auth-buttons');
     const user = JSON.parse(localStorage.getItem('user'));
     
@@ -114,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         formData.append('image', file);
         
         try {
-            const response = await fetch('http://localhost:5001/api/upload/image', {
+            const response = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: 'POST',
                 body: formData
             });
@@ -696,8 +701,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             
             const token = localStorage.getItem('token');
             const url = isEditing 
-                ? `http://localhost:5001/api/education/courses/${courseId}`
-                : 'http://localhost:5001/api/education/courses';
+                ? `${API_BASE_URL}/api/education/courses/${courseId}`
+                : `${API_BASE_URL}/api/education/courses`;
             const method = isEditing ? 'PUT' : 'POST';
             
             const response = await fetch(url, {
@@ -737,7 +742,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!isEditing) return;
         
         try {
-            const response = await fetch(`http://localhost:5001/api/education/courses/${courseId}`);
+            const response = await fetch(`${API_BASE_URL}/api/education/courses/${courseId}`);
             if (response.ok) {
                 const course = await response.json();
                 

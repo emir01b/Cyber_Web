@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const topicDetail = document.getElementById('topicDetail');
     const commentsList = document.getElementById('commentsList');
     const addCommentSection = document.getElementById('addCommentSection');
@@ -28,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Konu detaylarını yükle
     async function loadTopicDetail() {
         try {
-            const response = await fetch(`http://localhost:5001/api/forum/topics/${topicId}`);
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics/${topicId}`);
             if (response.ok) {
                 const topic = await response.json();
                 displayTopic(topic);
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Yorumları yükle
     async function loadComments() {
         try {
-            const response = await fetch(`http://localhost:5001/api/forum/topics/${topicId}/comments`);
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics/${topicId}/comments`);
             if (response.ok) {
                 const comments = await response.json();
                 displayComments(comments);
@@ -110,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5001/api/forum/topics/${topicId}/comments`, {
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics/${topicId}/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

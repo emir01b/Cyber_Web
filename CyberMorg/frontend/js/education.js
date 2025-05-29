@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const authButtons = document.querySelector('.auth-buttons');
     const educationGrid = document.getElementById('educationGrid');
     const adminPanel = document.getElementById('adminPanel');
@@ -173,7 +178,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5001/api/education/courses/${courseId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/education/courses/${courseId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -198,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         try {
             educationGrid.innerHTML = '<div class="loading">Eğitimler yükleniyor...</div>';
             
-            const response = await fetch('http://localhost:5001/api/education/courses');
+            const response = await fetch(`${API_BASE_URL}/api/education/courses`);
             if (response.ok) {
                 const courses = await response.json();
                 educationGrid.innerHTML = '';

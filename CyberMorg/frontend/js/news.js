@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const newsContainer = document.getElementById('newsContainer');
     const DEFAULT_IMAGE = 'https://cdn.pixabay.com/photo/2016/11/30/20/58/programming-1873854_1280.png';
     
@@ -69,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     window.logout = logout;
 
     try {
-        const response = await fetch('http://localhost:5001/api/news');
+        const response = await fetch(`${API_BASE_URL}/api/news`);
         const result = await response.json();
         
         if (!result.success) {

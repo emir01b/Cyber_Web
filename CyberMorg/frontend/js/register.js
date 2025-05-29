@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const registerForm = document.getElementById('registerForm');
     const sendVerificationButton = document.getElementById('sendVerification');
     const verificationCodeGroup = document.getElementById('verificationCodeGroup');
@@ -15,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                const response = await fetch('http://localhost:5001/api/auth/send-verification', {
+                const response = await fetch(`${API_BASE_URL}/api/auth/send-verification`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -60,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                const response = await fetch('http://localhost:5001/api/auth/register', {
+                const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     const newTopicBtn = document.querySelector('.new-topic-btn');
     const forumTopics = document.getElementById('forumTopics');
     const user = JSON.parse(localStorage.getItem('user'));
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch('http://localhost:5001/api/forum/topics', {
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -115,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sayfa yüklendiğinde konuları getir
     async function loadTopics() {
         try {
-            const response = await fetch('http://localhost:5001/api/forum/topics');
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics`);
             if (response.ok) {
                 const topics = await response.json();
                 forumTopics.innerHTML = '';
