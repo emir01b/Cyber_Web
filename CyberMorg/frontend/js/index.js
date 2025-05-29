@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // API Base URL - Production için
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5001' 
+        : 'https://cyber-web.onrender.com';
+
     // Auth butonlarını ve kullanıcı bilgilerini al
     const authButtons = document.querySelector('.auth-buttons');
     const user = JSON.parse(localStorage.getItem('user'));
@@ -114,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const newsContainer = document.getElementById('latestNews');
         
         try {
-            const response = await fetch('http://localhost:5001/api/news');
+            const response = await fetch(`${API_BASE_URL}/api/news`);
             const result = await response.json();
             
             if (!result.success) {
@@ -179,7 +184,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const topicsContainer = document.getElementById('latestTopics');
         
         try {
-            const response = await fetch('http://localhost:5001/api/forum/topics');
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics`);
             
             if (!response.ok) {
                 throw new Error('Forum konuları yüklenemedi');
@@ -231,7 +236,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const coursesContainer = document.getElementById('popularCourses');
         
         try {
-            const response = await fetch('http://localhost:5001/api/education/courses');
+            const response = await fetch(`${API_BASE_URL}/api/education/courses`);
             
             if (!response.ok) {
                 throw new Error('Eğitimler yüklenemedi');
@@ -294,7 +299,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Kullanıcı sayısı
     async function updateUserCount() {
         try {
-            const response = await fetch('http://localhost:5001/api/auth/count');
+            const response = await fetch(`${API_BASE_URL}/api/auth/count`);
             
             if (!response.ok) {
                 throw new Error('Kullanıcı sayısı alınamadı');
@@ -311,7 +316,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Haber sayısı
     async function updateNewsCount() {
         try {
-            const response = await fetch('http://localhost:5001/api/news');
+            const response = await fetch(`${API_BASE_URL}/api/news`);
             const result = await response.json();
             
             if (!result.success) {
@@ -328,7 +333,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Forum konusu sayısı
     async function updateForumCount() {
         try {
-            const response = await fetch('http://localhost:5001/api/forum/topics');
+            const response = await fetch(`${API_BASE_URL}/api/forum/topics`);
             
             if (!response.ok) {
                 throw new Error('Forum konuları yüklenemedi');
@@ -345,7 +350,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Eğitim sayısı
     async function updateCourseCount() {
         try {
-            const response = await fetch('http://localhost:5001/api/education/courses');
+            const response = await fetch(`${API_BASE_URL}/api/education/courses`);
             
             if (!response.ok) {
                 throw new Error('Eğitimler yüklenemedi');
