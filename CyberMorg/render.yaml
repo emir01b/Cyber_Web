@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cybermorg
+    env: node
+    plan: free
+    buildCommand: npm run install-all
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/frontend/uploads
+      sizeGB: 1 

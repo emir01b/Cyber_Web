@@ -12,7 +12,7 @@
     "install-all": "npm run install-backend && npm run install-frontend"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "18.x || 20.x"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   "author": "Emir",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "nodemailer": "^6.9.16"
+    "dotenv": "^16.4.5",
+    "nodemailer": "^6.9.15"
   }
 }

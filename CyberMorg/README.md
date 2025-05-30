@@ -1,7 +1,7 @@
 # 🛡️ CyberMorg - Siber Güvenlik Platformu
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-green.svg)
+![Node](https://img.shields.io/badge/node-18.x%20|%2020.x-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Web-lightgrey.svg)
 
@@ -40,7 +40,7 @@ CyberMorg, siber güvenlik dünyasında güncel kalmak isteyen profesyoneller ve
 ## 🚀 Teknoloji Stack'i
 
 ### Backend
-- **Node.js** (≥16.0.0) - Server-side JavaScript runtime
+- **Node.js** (18.x || 20.x) - Server-side JavaScript runtime
 - **Express.js** - Web application framework
 - **MongoDB** - NoSQL veritabanı
 - **Mongoose** - MongoDB object modeling
@@ -105,6 +105,8 @@ CyberMorg/
 ├── Dockerfile               # Docker konfigürasyonu
 ├── .dockerignore           # Docker ignore dosyası
 ├── .gitignore              # Git ignore dosyası
+├── .nvmrc                  # Node.js version specification
+├── render.yaml             # Render.com deploy configuration
 ├── package.json            # Ana proje konfigürasyonu
 └── README.md               # Proje dokümantasyonu
 ```
@@ -112,7 +114,7 @@ CyberMorg/
 ## ⚙️ Kurulum
 
 ### Gereksinimler
-- Node.js (≥16.0.0)
+- Node.js (18.x veya 20.x)
 - MongoDB
 - npm veya yarn
 
@@ -157,6 +159,40 @@ npm start
 ```
 
 Uygulama `http://localhost:5001` adresinde çalışacaktır.
+
+## 🚀 Render.com'a Deploy
+
+### 1. GitHub Repository Oluşturun
+```bash
+git add .
+git commit -m "Initial commit"
+git push origin main
+```
+
+### 2. Render.com'da Yeni Servis Oluşturun
+1. [Render.com](https://render.com) hesabınıza giriş yapın
+2. "New" > "Web Service" seçin
+3. GitHub repository'nizi bağlayın
+4. Aşağıdaki ayarları yapın:
+   - **Build Command**: `npm run install-all`
+   - **Start Command**: `npm start`
+   - **Node Version**: 20.18.0
+
+### 3. Environment Variables Ekleyin
+Render.com panelinde aşağıdaki environment variable'ları ekleyin:
+```
+MONGODB_URI=your-mongodb-atlas-connection-string
+JWT_SECRET=your-super-secret-jwt-key
+NODE_ENV=production
+PORT=5001
+```
+
+### 4. MongoDB Atlas Kurulumu
+1. [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) hesabı oluşturun
+2. Yeni cluster oluşturun (free tier)
+3. Database user oluşturun
+4. IP whitelist'e `0.0.0.0/0` ekleyin (production'da daha spesifik olmalı)
+5. Connection string'i kopyalayıp `MONGODB_URI` olarak ekleyin
 
 ## 🐳 Docker ile Çalıştırma
 
@@ -211,6 +247,32 @@ docker run -p 5001:5001 \
 5. **Eğitim**: Siber güvenlik eğitimlerini incele ve yeni içerik oluştur
 6. **Profil**: Kişisel bilgilerini ve ayarlarını yönet
 
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### Mongoose Connection Error
+```bash
+# Eğer Mongoose bağlantı hatası alıyorsanız:
+npm install mongoose@latest
+```
+
+#### Node.js Version Issues
+```bash
+# Node.js versiyonunu kontrol edin:
+node --version
+
+# Doğru versiyonu yüklemek için nvm kullanın:
+nvm install 20.18.0
+nvm use 20.18.0
+```
+
+#### Port Already in Use
+```bash
+# 5001 portu kullanılıyorsa:
+lsof -ti:5001 | xargs kill -9
+```
+
 ## 🤝 Katkıda Bulunma
 
 1. Projeyi fork edin
@@ -219,18 +281,15 @@ docker run -p 5001:5001 \
 4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
 5. Pull Request açın
 
-## 📝 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
 ## 👨‍💻 Geliştirici
 
-**Emir** - [GitHub Profili](https://github.com/your-username)
+**Emir** - [GitHub Profili](https://github.com/emir01b)
 
 ## 📞 İletişim
 
 Proje hakkında sorularınız için:
-- GitHub Issues: [Issues sayfası](https://github.com/your-username/cybermorg/issues)
+- GitHub Issues: [Issues sayfası](https://github.com/emir01b/cybermorg/issues)
 - Email: your-email@example.com
 
 ## 🚦 Durum
@@ -242,9 +301,9 @@ Proje hakkında sorularınız için:
 - ✅ Eğitim sistemi
 - ✅ Dosya yükleme
 - ✅ Responsive tasarım
+- ✅ Render.com deploy desteği
 - 🔄 Haber scraping optimizasyonu
-- 📋 Admin paneli (planlanıyor)
-- 📋 Mobil uygulama (planlanıyor)
+
 
 ## ⭐ Yıldız Verin!
 

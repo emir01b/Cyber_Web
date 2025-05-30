@@ -1,5 +1,5 @@
 # Multi-stage build
-FROM node:16-alpine AS backend
+FROM node:20-alpine AS backend
 
 # Backend için working directory
 WORKDIR /app/backend
@@ -12,7 +12,7 @@ RUN npm ci --only=production
 COPY backend/ ./
 
 # Frontend build stage
-FROM node:16-alpine AS frontend
+FROM node:20-alpine AS frontend
 
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
@@ -22,7 +22,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Final production stage
-FROM node:16-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 

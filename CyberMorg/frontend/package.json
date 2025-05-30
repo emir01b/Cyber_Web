@@ -9,10 +9,10 @@
     "dev": "live-server"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "18.x || 20.x"
   },
   "dependencies": {
-    "serve": "^14.2.0"
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "live-server": "^1.2.2"
