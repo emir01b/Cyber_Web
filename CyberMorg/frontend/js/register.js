@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Buton durumunu değiştir
+            sendVerificationButton.disabled = true;
+            sendVerificationButton.textContent = 'Gönderiliyor...';
+
             try {
                 const response = await fetch(`${API_BASE_URL}/api/auth/send-verification`, {
                     method: 'POST',
@@ -31,21 +35,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 
                 if (response.ok) {
-                    // Test amacıyla doğrulama kodunu göster
-                    alert(`Doğrulama kodu: ${data.code}\nGerçek bir uygulamada bu e-posta ile gönderilir.`);
+                    // Başarılı mesajı göster
+                    alert(data.message);
                     
+                    // Doğrulama kodu input alanını göster
                     verificationCodeGroup.style.display = 'block';
-                    sendVerificationButton.disabled = true;
                     sendVerificationButton.style.opacity = '0.7';
+                    sendVerificationButton.textContent = 'Doğrulama Kodu Gönderildi';
                     
-                    // Doğrulama kodunu otomatik olarak input alanına ekle
-                    document.getElementById('verificationCode').value = data.code;
+                    // 5 dakika sonra butonu tekrar aktif hale getir
+                    setTimeout(() => {
+                        sendVerificationButton.disabled = false;
+                        sendVerificationButton.style.opacity = '1';
+                        sendVerificationButton.textContent = 'Tekrar Gönder';
+                    }, 300000); // 5 dakika = 300000 ms
                 } else {
                     alert(data.error || 'Doğrulama kodu gönderilemedi');
+                    // Hata durumunda butonu geri getir
+                    sendVerificationButton.disabled = false;
+                    sendVerificationButton.textContent = 'Doğrulama Kodu Gönder';
                 }
             } catch (error) {
                 console.error('Hata:', error);
                 alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                // Hata durumunda butonu geri getir
+                sendVerificationButton.disabled = false;
+                sendVerificationButton.textContent = 'Doğrulama Kodu Gönder';
             }
         });
     }

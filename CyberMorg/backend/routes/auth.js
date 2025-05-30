@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { sendVerificationEmail } = require('../services/emailService');
 require('dotenv').config();
 
 // Doğrulama kodlarını geçici olarak saklamak için
@@ -22,7 +23,7 @@ router.get('/count', async (req, res) => {
     }
 });
 
-// Kayıt için doğrulama kodu gönderme (simülasyon)
+// Kayıt için doğrulama kodu gönderme
 router.post('/send-verification', async (req, res) => {
     try {
         const { email, username } = req.body;
@@ -38,23 +39,33 @@ router.post('/send-verification', async (req, res) => {
             });
         }
         
-        // Gerçek bir e-posta göndermek yerine, rastgele bir kod oluştur ve sakla
+        // Rastgele bir doğrulama kodu oluştur
         const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
         
+        // Kodu geçici olarak sakla
         verificationCodes.set(email, {
             code: verificationCode,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            username: username
         });
 
-        console.log(`Doğrulama kodu oluşturuldu: ${email} için ${verificationCode}`);
+        // E-posta gönder
+        const emailResult = await sendVerificationEmail(email, verificationCode, username);
         
-        // Başarılı yanıt
-        res.json({ 
-            message: 'Doğrulama kodu gönderildi', 
-            // Gerçek bir uygulamada bu kodu göndermemeniz gerekir, güvenlik riski oluşturur
-            // Test amacıyla buraya ekledik
-            code: verificationCode
-        });
+        if (emailResult.success) {
+            console.log(`Doğrulama kodu e-posta ile gönderildi: ${email} için`);
+            
+            // Başarılı yanıt (güvenlik için kodu döndürme)
+            res.json({ 
+                message: 'Doğrulama kodu e-posta adresinize gönderildi. Gelen kutunuzu kontrol edin. Gelen kutunuz boş ise spam klasörüne bakmayı unutmayın.'
+            });
+        } else {
+            console.error('E-posta gönderme hatası:', emailResult.error);
+            res.status(500).json({ 
+                error: 'Doğrulama e-postası gönderilemedi. Lütfen e-posta adresinizi kontrol edin.',
+                details: emailResult.error
+            });
+        }
     } catch (error) {
         console.error('Doğrulama kodu hatası:', error);
         res.status(500).json({ 

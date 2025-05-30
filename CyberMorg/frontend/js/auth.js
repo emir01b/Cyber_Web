@@ -55,8 +55,26 @@ function logout() {
     window.location.href = '/';
 }
 
+// Mobile hamburger menü toggle fonksiyonu
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.querySelector('.hamburger i');
+    
+    if (navLinks) {
+        navLinks.classList.toggle('active');
+        
+        // Hamburger icon'u değiştir
+        if (navLinks.classList.contains('active')) {
+            hamburger.className = 'fas fa-times';
+        } else {
+            hamburger.className = 'fas fa-bars';
+        }
+    }
+}
+
 // Global olarak erişilebilir olması için
 window.updateAuthButtons = updateAuthButtons;
 window.logout = logout;
+window.toggleMobileMenu = toggleMobileMenu;
 
 // ... diğer auth fonksiyonları ... 

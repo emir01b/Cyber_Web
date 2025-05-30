@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - CyberMorg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberMorg
+            </a>
+            <button class="hamburger" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/news"><i class="fas fa-newspaper"></i> Haberler</a></li>
+                <li><a href="/forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="/education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="/login" class="btn">Giriş Yap</a>
+                <a href="/register" class="btn">Kayıt Ol</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="welcome-section">
+            <h1>Responsive Test Sayfası</h1>
+            <p>Bu sayfa navbar'ın responsive tasarımını test etmek için oluşturulmuştur.</p>
+        </section>
+
+        <div style="height: 100vh; background: linear-gradient(45deg, var(--dark-bg), var(--accent-color)); padding: 2rem; margin: 2rem 0; border-radius: 10px;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Test İçeriği</h2>
+            <p>Bu alan navbar'ın sabit konumunu test etmek için uzun içerik simüle eder.</p>
+            <p>Mobil cihazlarda hamburger menü butonuna tıklayın ve menünün düzgün açılıp kapandığını kontrol edin.</p>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 255, 0, 0.1); border: 1px solid var(--primary-color); border-radius: 5px;">
+                <h3 style="color: var(--primary-color);">Test Edilecek Özellikler:</h3>
+                <ul style="margin-top: 1rem; color: var(--light-text); line-height: 2;">
+                    <li>✅ Mobil cihazlarda hamburger menü görünürlüğü</li>
+                    <li>✅ Menü açılıp kapanma işlevi</li>
+                    <li>✅ Logo ve auth butonlarının konumlandırması</li>
+                    <li>✅ İçeriğin navbar altında kalmaması</li>
+                    <li>✅ Responsive breakpoint'lerde düzgün görünüm</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html> 

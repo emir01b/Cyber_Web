@@ -22,6 +22,7 @@ body {
     color: var(--light-text);
     line-height: 1.6;
     min-height: 100vh;
+    padding-top: 80px; /* Fixed navbar için */
     background-image: 
         radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
         linear-gradient(rgba(0,0,0,0.9) 0%, var(--dark-bg) 100%);
@@ -142,12 +143,17 @@ body {
     border-radius: 4px;
     min-width: 200px;
     display: none;
-    z-index: 1000;
+    z-index: 1001;
     margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-menu.active {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .dropdown-menu a {
@@ -178,4 +184,130 @@ body {
 
 .auth-buttons .btn {
     margin: 0;
+}
+
+/* Hamburger menü butonu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger:hover {
+    color: var(--light-text);
+}
+
+/* Responsive tasarım - Mobile */
+@media (max-width: 768px) {
+    body {
+        padding-top: 120px; /* Mobile'da navbar daha yüksek olabilir */
+    }
+    
+    .nav-container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    
+    .hamburger {
+        display: block;
+        order: 2;
+    }
+    
+    .logo {
+        order: 1;
+        font-size: 1.3rem;
+    }
+    
+    .nav-links {
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        background: var(--darker-bg);
+        border-top: 1px solid var(--primary-color);
+        margin-top: 1rem;
+        padding: 1rem 0;
+        gap: 0;
+        display: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .nav-links li {
+        width: 100%;
+    }
+    
+    .nav-links a {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 48px; /* Touch target minimum size */
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .auth-buttons {
+        order: 3;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+    
+    .auth-buttons .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 100px; /* Daha küçük cihazlarda padding azalt */
+    }
+    
+    .navbar {
+        padding: 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .logo i {
+        font-size: 1rem;
+    }
+    
+    .auth-buttons {
+        gap: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .auth-buttons .btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .user-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Nav links'i daha kompakt yap */
+    .nav-links a {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
 } 

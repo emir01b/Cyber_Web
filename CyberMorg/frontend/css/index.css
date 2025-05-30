@@ -1,3 +1,11 @@
+/* Genel Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
 /* Ana sayfa özel stilleri buraya gelecek */
 .welcome-section {
     text-align: center;

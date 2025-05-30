@@ -56,6 +56,11 @@ app.get('/education/course', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/views/course-detail.html'));
 });
 
+// Course detail sayfası (popüler eğitimler için)
+app.get('/course-detail', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/views/course-detail.html'));
+});
+
 // Eğitim oluşturma sayfası
 app.get('/education/create', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/views/course-editor.html'));
